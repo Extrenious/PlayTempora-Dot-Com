@@ -1,0 +1,126 @@
+body{
+background-color: rgb(174, 169, 149);
+}
+
+/* Define the keyframes for the fade animation */
+@keyframes fadeBackground {
+    0% {
+      background-color: #B18F6A;
+    }
+    100% {
+      background-color: #F3D8BA;
+    }
+  }
+  
+  /* Apply the animation to the element */
+  #Homebody{
+    width: 100%;
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeBackground 20s infinite alternate;
+    /* 3s: duration, infinite: repeat forever, alternate: switch direction */
+  }
+
+  @keyframes ComingSoonAnim {
+    0% {
+      Color: #4f4e4e1a;
+      top: 100px; /* Adjust the value to lower the text */  
+
+    }
+    100% {
+        Color: #4f4e4e47;
+        top: 125px; /* Adjust the value to lower the text */  
+
+    }
+  }
+
+@keyframes fadeTextColor {
+    0% {
+      Color: #ffce00;
+      text-shadow: 2px 2px 3px 	#453e23;
+    }
+    100% {
+        Color: #d7be01;
+        text-shadow: 2px 2px 5px #ffe887;
+    }
+  }
+
+  @keyframes fadeTextColor2 {
+    0% {
+      Color: rgb(166, 93, 4);
+      text-shadow: 1px 1px 2px 	#5f5739;
+    }
+    100% {
+        Color: rgb(255, 142, 3);
+        text-shadow: 2px 2px 2px #f8e090;;
+    }
+  }
+
+#BigTempora {
+    text-align: center;
+    color: rgb(252, 194, 4);
+    font-family: 'Cinzel decorative', serif;
+    font-size: 8rem;
+    font-weight: lighter;
+    margin-top: 20%;
+    text-shadow: 1px 1px 1px rgba(239, 149, 24, 0.607);
+    animation: fadeTextColor 7s infinite alternate;
+}
+
+#MedTempora {
+    text-align: center;
+    font-family: 'Cinzel', Georgia,  Times, serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(176, 98, 2);
+    text-shadow: 1px 1px 1px rgb(114, 114, 114);
+    animation: fadeTextColor2 7s infinite alternate;
+}
+
+#ComingSoon {
+    text-align: center;
+    position: relative;
+    font-weight: bold;
+    font-size: 2rem;
+
+    top: 100px; /* Adjust the value to lower the text */  
+    font-family: 'Cormorant garamond', serif;
+    animation: ComingSoonAnim 6s infinite alternate;
+
+}
+.GenericText {
+    font-size: 1rem;
+    text-align: center;
+   
+    font-family: 'Cormorant garamond', serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  .footer {
+    background-color: #00000000;
+    text-align: center;
+    color: rgb(60, 30, 2);
+    padding: 10px 0;
+    font-family: 'Cormorant garamond', serif;
+
+  }
+  
+
+  
+/*https://blog.hubspot.com/website/css-animation-examples*/

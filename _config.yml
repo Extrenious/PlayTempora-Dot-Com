@@ -1,0 +1,10 @@
+# _config.yml
+
+# Set the Jekyll theme
+theme: minima
+
+# Exclude files from being processed by Jekyll
+exclude:
+  - node_modules
+  - README.md  # Example. You can exclude files or directories causing issues
+
