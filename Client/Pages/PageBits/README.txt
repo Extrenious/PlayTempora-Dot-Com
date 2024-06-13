@@ -1,0 +1,1 @@
+this is just some sudo partials like views partials 

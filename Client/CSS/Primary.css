@@ -25,12 +25,12 @@ body{
     
       @keyframes ComingSoonAnim {
         0% {
-          Color: #4f4e4e1a;
+          Color: #4f4e4e16;
           top: 100px; /* Adjust the value to lower the text */  
     
         }
         100% {
-            Color: #4f4e4e47;
+            Color: #4f4e4e30;
             top: 125px; /* Adjust the value to lower the text */  
     
         }
@@ -84,7 +84,6 @@ body{
         position: relative;
         font-weight: bold;
         font-size: 2rem;
-    
         top: 100px; /* Adjust the value to lower the text */  
         font-family: 'Cormorant garamond', serif;
         animation: ComingSoonAnim 6s infinite alternate;
