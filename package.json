@@ -2,10 +2,10 @@
   "name": "playtemporawebsite",
   "version": "1.0.0",
   "description": "Tempora Website\r By Jermain Lewis / Rakun / Extrenious - Creators alter egos & Names",
-  "main": "server/App.js",
+  "main": "App.js",
   "scripts": {
-    "build": "node server/App.js",
-    "deploy": "gh-pages -d public"
+    "build": "node App.js",  
+    "deploy": "gh-pages -d public" 
   },
   "keywords": [],
   "author": "",
