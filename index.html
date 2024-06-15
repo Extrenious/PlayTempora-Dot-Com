@@ -3,7 +3,15 @@
 <html lang="en">
 <head>
 
-
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    style-src 'self' 'https://cdn.jsdelivr.net' 'https://fonts.googleapis.com';
+    script-src 'self' 'https://code.jquery.com';
+    img-src 'self' data:;
+    connect-src 'self';
+    font-src 'self' 'https://fonts.gstatic.com';
+  ">
+  
     <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content = "IE-edge">
 
