@@ -1,0 +1,19 @@
+# Site settings
+title: PlayTempora
+description: Website for my game about Temples and portals
+baseurl: "/" 
+url: "http://PlayTempora" 
+
+# Author information
+author:
+  name: Jermain Lewis
+  Username: Extrenious
+  github_username: Rakun
+  email: Extrenioussama@example.com
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# GitHub Pages specific settings
+remote_theme: "mmistakes/minimal-mistakes"

@@ -1,6 +1,16 @@
-body{
-    background-color: rgb(174, 169, 149);
-    }
+body {
+  padding-top: 70px; /* Adjust this value to match the height of your navbar */
+}
+iframe {
+  width: 100%;
+  height: 600px; /* Adjust height as needed */
+}
+
+@media (max-width: 768px) {
+  iframe {
+    height: 600px; /* Adjust height for smaller screens */
+  }
+}
     
     /* Define the keyframes for the fade animation */
     @keyframes fadeBackground {
@@ -39,18 +49,34 @@ body{
     @keyframes fadeTextColor {
         0% {
           Color: #ffce00;
-          text-shadow: 2px 2px 3px 	#453e23;
+          text-shadow: 2px 2px 3px 	#453e23a2;
+        }
+        70% {
+          Color: #e2b60a;
+          text-shadow: 2px 2px 3px 	#00000000;
+        }
+        80% {
+          Color: #e2b60a;
+          text-shadow: 2px 2px 3px 	#00000000;
         }
         100% {
             Color: #d7be01;
-            text-shadow: 2px 2px 5px #ffe887;
+            text-shadow: 2px 2px 5px #ffe98798;
         }
       }
     
       @keyframes fadeTextColor2 {
         0% {
           Color: rgb(166, 93, 4);
-          text-shadow: 1px 1px 2px 	#5f5739;
+          text-shadow: 1px 1px 2px 	#5f5739bb;
+        }
+        70% {
+          Color: rgb(178, 99, 2);
+          text-shadow: 1px 1px 2px 	#00000000;
+        }
+        80% {
+          Color: rgb(211, 116, 0);
+          text-shadow: 1px 1px 2px 	#00000000;
         }
         100% {
             Color: rgb(255, 142, 3);
@@ -120,7 +146,11 @@ body{
     
       }
       
-    
+      #UpdateLogContainer {
+        max-height: calc(100vh - 70px); /* Adjust this value to the available viewport height minus navbar height */
+        overflow-y: auto; /* Adds a vertical scrollbar if content overflows */
+      }
       
     /*https://blog.hubspot.com/website/css-animation-examples*/
-    
+
+    /* Breadcrumbs for hierarchy https://getbootstrap.com/docs/4.0/components/breadcrumb*/
