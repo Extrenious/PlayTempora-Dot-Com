@@ -1,5 +1,6 @@
 console.log('App.js booting up');
 const express = require('express');
+const helmet = require('helmet');
 const path = require('path');
 const fs = require('fs');
 
@@ -19,7 +20,7 @@ const spreadsheetId = '1cVLnQOB6RpeNYx9MOn8q1MMxLfBtf0vVI1T3wKh9qAo';
 let sheets;
 try {
   // Corrected path to credentials.json
-  const credentialsPath = path.join(__dirname, 'credentials.json');
+  const credentialsPath = path.join(__dirname,'credentials.json');
   const credentials = JSON.parse(fs.readFileSync(credentialsPath));
 
   const { client_email, private_key } = credentials;
@@ -101,9 +102,9 @@ app.get('/Info', (req, res) => {
   res.sendFile(PagePath);
 });
 
-const InfoPath = path.join(__dirname, '..', 'server', 'routes', 'Info.js');
-const infoRoutes = require(InfoPath); // Assuming infoRoutes.js is in the same directory
-app.use('/Info', infoRoutes);
+//const InfoPath = path.join(__dirname, '..', 'server', 'routes', 'Info.js');
+//const infoRoutes = require(InfoPath); // Assuming infoRoutes.js is in the same directory
+//app.use('/Info', infoRoutes);
 
 
 app.get('/Feedback', (req, res) => {
@@ -118,6 +119,20 @@ app.get('/Feedback', (req, res) => {
 app.use((req, res) => {
   res.status(404).send('404 Page not found');
 });
+
+// Configure Content Security Policy (CSP)
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", 'https://cdn.jsdelivr.net', 'https://fonts.googleapis.com'],
+      scriptSrc: ["'self'", 'https://code.jquery.com'],
+      imgSrc: ["'self'", 'data:'],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+    },
+  })
+);
 
 // Start the server
 app.listen(port, () => {
