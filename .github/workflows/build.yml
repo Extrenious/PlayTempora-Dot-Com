@@ -1,26 +1,25 @@
-name: Node Continuous Integration
+name: Node Deploy
 
-on: 
+on:
   push:
+    branches:
+      - main
 
 jobs:
-  build-node:
-    name: Build and run Node project
+  deploy:
+    name: Deploy to Production
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out code from GitHub
         uses: actions/checkout@v3
 
-      - name: Check Node version
-        run: node --version
-
-      - name: Check NPM version
-        run: npm --version
-
       - name: Install NPM packages
         run: npm install
-      - name: List directory contents
-        run: ls -R
-      - name: Run Node Application
-        run: node server/app.js
+
+      - name: Deploy Application
+        run: |
+          pm2 stop app || true
+          pm2 start server/app.js --name app
+        env:
+          NODE_ENV: production
