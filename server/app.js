@@ -7,20 +7,16 @@ const fs = require('fs');
 const { GoogleAuth } = require('google-auth-library');
 const { google } = require('googleapis');
 
-// Initialize Express app
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Serve static files
 app.use(express.static(path.join(__dirname, '..', '')));
 
-// Example usage
 const spreadsheetId = '1cVLnQOB6RpeNYx9MOn8q1MMxLfBtf0vVI1T3wKh9qAo';
-
 let sheets;
+
 try {
-  // Corrected path to credentials.json
-  const credentialsPath = path.join(__dirname,'credentials.json');
+  const credentialsPath = path.join(__dirname, 'credentials.json');
   const credentials = JSON.parse(fs.readFileSync(credentialsPath));
 
   const { client_email, private_key } = credentials;
@@ -37,9 +33,9 @@ try {
 
 } catch (err) {
   console.error('Error loading credentials:', err);
+  process.exit(1); // Exit the process if credentials cannot be loaded
 }
 
-// Function to get values from Google Sheets
 async function getValues(spreadsheetId, range) {
   try {
     const result = await sheets.spreadsheets.values.get({
@@ -51,13 +47,11 @@ async function getValues(spreadsheetId, range) {
     return result.data.values;
   } catch (err) {
     console.error('The API returned an error:', err);
-    throw err;
+    throw err; // Re-throw the error to be caught by the global error handler
   }
 }
 
 const UpLogrange = 'UpdateLog!A:D';
-
-// API endpoint to get data from Google Sheets
 app.get('/api/data/UpdateLog', async (req, res) => {
   try {
     const data = await getValues(spreadsheetId, UpLogrange);
@@ -77,64 +71,21 @@ app.get('/api/data/Suggestions', async (req, res) => {
   }
 });
 
-
-// Route to serve the index.html file
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
-// Route to serve the Home.html file
-app.get('/Home', (req, res) => {
-  const homePath = path.join(__dirname, '..', 'client', 'pages', 'Home.html');
-  console.log(homePath);  // Log the path to check it
-  res.sendFile(homePath);
-});
+// Add more routes as needed...
 
-app.get('/Hall', (req, res) => {
-  const PagePath = path.join(__dirname, '..', 'client', 'pages', 'Hall.html');
-  console.log(PagePath);
-  res.sendFile(PagePath);
-});
-
-app.get('/Info', (req, res) => {
-  const PagePath = path.join(__dirname, '..', 'client', 'pages', 'Info.html');
-  console.log(PagePath);
-  res.sendFile(PagePath);
-});
-
-//const InfoPath = path.join(__dirname, '..', 'server', 'routes', 'Info.js');
-//const infoRoutes = require(InfoPath); // Assuming infoRoutes.js is in the same directory
-//app.use('/Info', infoRoutes);
-
-
-app.get('/Feedback', (req, res) => {
-  const PagePath = path.join(__dirname, '..', 'client', 'pages', 'Feedback.html');
-  console.log(PagePath);
-  res.sendFile(PagePath);
-});
-
-
-
-// 404 Page
 app.use((req, res) => {
   res.status(404).send('404 Page not found');
 });
 
-// Configure Content Security Policy (CSP)
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", 'https://cdn.jsdelivr.net', 'https://fonts.googleapis.com'],
-      scriptSrc: ["'self'", 'https://code.jquery.com'],
-      imgSrc: ["'self'", 'data:'],
-      connectSrc: ["'self'"],
-      fontSrc: ["'self'", 'https://fonts.gstatic.com'],
-    },
-  })
-);
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
