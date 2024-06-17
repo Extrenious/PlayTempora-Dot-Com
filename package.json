@@ -4,7 +4,8 @@
   "description": "Tempora Website\r By Jermain Lewis / Rakun / Extrenious - Creators alter egos & Names",
   "main": "App.js",
   "scripts": {
-    "build": "node App.js",
+    "start": "node server/app.js",
+    "build": "node server/app.js",
     "deploy": "gh-pages -d public"
   },
   "keywords": [],
